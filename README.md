@@ -1,76 +1,101 @@
-# Movie App
+# Movie App 2.0
 
-A fullstack movie application built with **React, TypeScript, Node.js, and SQLite**.  
-The application allows users to browse movies, view movie details, and manage their favorite movies through a custom backend API.
+A full-stack movie application built with React, TypeScript, Express, and SQLite.
+Users can search movies from the OMDb API, open detailed movie pages, and store favorite movies in a local SQLite database.
 
 ## Features
 
-- Browse a list of movies
-- View movie details
-- Add movies to favorites
-- Remove movies from favorites
-- Fetch movie data from an external API
-- Responsive user interface
+- Search movies by title using OMDb
+- Open a detailed page for each movie
+- Save a movie to favorites
+- View all saved favorites
+- Remove favorites from the database
 
 ## Tech Stack
 
-### Frontend
-
-- React
-- TypeScript
-- Vite
-- CSS
-
-### Backend
-
-- Node.js
-- Express
-- SQLite
+- Frontend: React, TypeScript, Vite, Bootstrap, CSS
+- Backend API: Node.js, Express
+- Database: SQLite
+- Routing: React Router
 
 ## Project Structure
 
-movie-app  
-│  
-├── backend-server  
-│ ├── database  
-│ ├── routes  
-│ ├── index.ts  
-│ └── movies.sqlite  
-│  
-├── public  
-├── src  
-│  
-├── index.html  
-├── package.json  
-└── README.md
+```text
+movie-app-2.0/
+|- src/                         # Frontend React app
+|  |- components/
+|  |- App.tsx
+|  |- home.tsx
+|  |- MovieDetails.tsx
+|- routes/
+|  |- movies.ts                 # Express routes for favorites API
+|- backend-server/
+|  |- database/
+|     |- database.ts            # SQLite connection
+|- index.ts                     # Express server entry
+|- package.json
+|- README.md
+```
+
+## Prerequisites
+
+- Node.js 18+ (recommended)
+- npm
 
 ## Installation
 
-### 1. Clone the repository
-
-git clone https://github.com/your-username/movie-app.git
-
-### 2. Install dependencies
-
+```bash
 npm install
+```
 
-### 3. Start the development server
+## Run the Project
 
+### 1. Start the frontend (Vite)
+
+```bash
 npm run dev
+```
 
-### 4. Start the backend server
+The frontend runs on the Vite dev server (usually `http://localhost:5173`).
 
-cd backend-server  
-npm install  
-npm start
+### 2. Start the backend API
 
-## Purpose
+The backend entry file is `index.ts` and listens on port `3000`.
 
-This project was created to practice building a fullstack application using **React and TypeScript** together with a **Node.js backend and a SQLite database**. The focus of the project was component structure, API integration, and state management.
+If you do not already have backend runtime packages installed, run:
+
+```bash
+npm install express cors body-parser
+npm install -D tsx
+```
+
+Then start the backend:
+
+```bash
+npx tsx index.ts
+```
+
+The API will be available at `http://localhost:3000`.
+
+## API Endpoints
+
+Base URL: `http://localhost:3000/movies`
+
+- `GET /movies` - Get all favorite movies
+- `POST /movies` - Save a movie to favorites
+  - Required fields: `title`, `imdbID`
+  - Optional fields: `genre`, `rating`
+- `DELETE /movies/:imdbID` - Remove a favorite movie by IMDb ID
+
+## Notes
+
+- The OMDb API key is currently used directly in frontend source code.
+- Favorite movies are stored in a local `movies.sqlite` database file.
+- Frontend and backend run as separate processes during development.
 
 ## Future Improvements
 
-- Search functionality
-- Pagination for movie lists
-- User authentication
-- Improved UI/UX design
+- Move API key to environment variables
+- Add backend scripts to `package.json`
+- Add validation and better error handling
+- Add tests for API and UI
