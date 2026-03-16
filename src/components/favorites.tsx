@@ -27,7 +27,7 @@ const Favorites = () => {
       });
 
       if (res.ok) {
-        setFavorites(prev => prev.filter(movie => movie.imdbID !== imdbID));
+        setFavorites((prev) => prev.filter((movie) => movie.imdbID !== imdbID));
       } else {
         console.error("Kunde inte ta bort filmen");
       }
@@ -45,17 +45,20 @@ const Favorites = () => {
         Hem
       </Link>
 
-      <h2>Dina favoriter</h2>
+      <h2>favorites</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {favorites.length === 0 ? (
         <p>Du har inga sparade filmer ännu</p>
       ) : (
         <ul>
-          {favorites.map(movie => (
+          {favorites.map((movie) => (
             <li key={movie.imdbID}>
               <strong>{movie.title}</strong> ({movie.genre}) - Betyg:{" "}
               {movie.rating}
-              <button onClick={() => deleteFavorite(movie.imdbID)}>
+              <button
+                className="btn btn-outline-primary"
+                onClick={() => deleteFavorite(movie.imdbID)}
+              >
                 Ta bort
               </button>
             </li>

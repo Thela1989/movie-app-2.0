@@ -77,13 +77,20 @@ const Home = () => {
     <div className="container-movie-app">
       <div className="text-center my-4">
         <MovieListHeading heading="Movies" />
-        <div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+            justifyContent: "center",
+          }}
+        >
           <SearchBox
             searchValue={searchValue}
             setSearchValue={setSearchValue}
           />
           <Link to="/favorites" className="btn btn-outline-primary">
-            Favoriter
+            Favorites
           </Link>
         </div>
       </div>

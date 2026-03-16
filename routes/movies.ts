@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { db } from "../database/database";
+import { db } from "../backend-server/database/database";
 
 const router = express.Router();
 

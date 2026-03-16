@@ -15,7 +15,7 @@ interface MovieListProps {
   onSave: (movie: Movie) => void;
 }
 
-const MovieList: React.FC<MovieListProps> = props => {
+const MovieList: React.FC<MovieListProps> = (props) => {
   return (
     <>
       {props.movies.map((movie: Movie) => (
@@ -28,7 +28,10 @@ const MovieList: React.FC<MovieListProps> = props => {
               />
             </Link>
             <div className="fav-btn">
-              <button onClick={() => props.onSave(movie)}>
+              <button
+                className="btn btn-outline-primary"
+                onClick={() => props.onSave(movie)}
+              >
                 Add to your favorites
               </button>
             </div>
